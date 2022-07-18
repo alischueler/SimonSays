@@ -1,0 +1,9 @@
+To play Simon Says:
+1. Run the game with the initial world state
+2. The game will flash a circle, click within the correct circle after waiting one second
+3. After clicking on the correct circle, the game will add onto the given sequence and flash the list, with another random circle at the end
+4. Click on the circles in the given order after waiting 1 second between end of flash and each click
+5. Click anywhere on the screen to continue because the empty list still needs to be clicked to add to the list
+6. Repeat steps 4 through 6, for as long as the user wants to play
+7. If the user does not click inside the correct circle, or clicks too fast, the game will stop running and display "Wring Circle"
+8. To play again, start the program over with the initial word state

@@ -1,0 +1,51 @@
+The first class, Circles, is our World Class. The purpose of this class is to keep track of:
+the circles that are drawn (through the circlesDrawn field)
+the circles that are left to be dealt with through clicking, darkening, or lightening (through the circlesLeft field)
+the circles that have been dealt with through clicking, darkening, or lightening (through the circlesUsed field)
+If the world should flash (through the isFlashing field)
+If the world, specifically the first circle in the list of circle to be dealt with, has been darkened (through the isDarkened field)
+If circles should be added to the list of circle to be dealt with in the current world (through the addCircles field)
+If the world should accept clicks from the user, should accept clicks (through the acceptClicks field)
+If the world should end (through the endWorld field)
+The last scene shown, when the world has been ended (through the lastImage constant field)
+There are two constructors in this class:
+one that takes in circlesDrawn, circles:eft, circlesUsed, isFlashing, isDarkened, and acceptClicks. This is used to create new circles that other world handlers will then be invoked by.
+another that takes in only endWorld. The is only used when a wrong click is made and the game ends. In the draw function, this will cause the lastImage to appear on the screen.
+
+There are four methods:
+makeScene is invoked by Circles and produces a worldScene, which draws circlesDrawn onto an empty scene when the game is still running. When the game is supposed to stop(when endWorld is true), it draws the last image that has the string "Wrong Circle" displayed in the middle of an empty scene.
+onTick is invoked by Circles and darkens the first element of circleLeft(a field) if isFlashing is true and isDarken is false. through calling blinkDarken method. When isFlashing is true and isDarken is true, the first element of circleLeft is lighted by the method blinkLighten. When isFlashing is false, this Circles (World) is returned.
+addCircles is invoked by Circles and produces a new Circles with the circleLeft field updated with a new random Circle at the end of the list. The circlesUsed is an empty list of circle (base case), isFlashing is true because the new circlesLeft list should flash, and isDarken is false because circlesLeft has not been darkened yet, all other booleans in the remaining fields are false because we don't add more circles to the list and we are not accepting clicks. 
+onMouseClicked is invoked by Circles and takes in the position of a mouse click by the user if acceptingClick is true, the method then compares this click with the first element of the circleLeft list using onMouseClickedHelp. If acceptingClick is false, the method returns this Circles. 
+
+
+
+The second class, Circle, represents an individual Circle. The purpose of this class is to keep track of:
+the radius of the circle (through the constant field radius)
+the color of the circle, weather darkened or lightened (through the c field)
+the x location of the center of the circle (through the x field)
+the y location of the center of the circle (through the y field)
+There are three constructors in this field:
+one that takes in a color, and an x and y position as integers. This is used when creating colors that are brighter, or darker than their previous state, and keeping the circles in the same position.
+another that takes in a random and an x and y position as integers. This is used when creating a new list of circle with a random circle added on to the list at the end. The random number is then used to find a next random integer between 1 and 4 where each integer is assigned to a different color and location.
+the final constructor takes in a random. This is used only to test the method addCircles() in the Circles class. The random is seeded with 4, so it will always produce the green circle at location (150, 150). The original constructor is called using this and color. green, 150, 150 are passed in.
+There are 6 methods in this class:
+draw, brightenCircle, darkenCircle, findColor, isInsideX, and isInsideY
+
+
+
+The Interface, ILoCircle, is an interface for the MtLoCircle and ConsLoCircle classes. The purpose of this interface is to make sure MtLoCircle and ConsLoCircle implement the following methods:
+draw, blinkDarken, blinkLighten, onMouseClickedHelp, findCircle, remove, append
+
+
+The third class, MtLoCircle, represents an empty list of Circle. The purpose of this class is to keep track of when a field in the Circles class is empty (usually the circles left to be dealt with), and still be able to get the base case of the following methods:
+draw, blinkDarken, blinkLighten, onMouseClickedHelp, findCircle, remove, append
+This class uses java automatic constructor because there is nothing in an empty list.
+
+The fourth class, ConsLoCircle, represents a non empty list of Circle. The purpose of this class is to keep track of when a field in the Circles class is not empty (usually the circles left to be dealt with) and still be able to invoke the methods on every updated list of circle:
+draw, blinkDarken, blinkLighten, onMouseClickedHelp, findCircle, remove, append
+This class has one constructor that passes in the first element of the list and the rest  of the elements of the list. This is used whenever new Lists of Circle are created or the list is updated in some way.
+
+The fifth class is the examples class which creates examples of Circles, Circle, MtLoCircle, and ConsLoCircle as well as tests each method. addCirclesForTesting() is tested as opposed to addCircles() because addCirclesForTesting() adds a green circle to the list of circle to be dealt with every time, but addCircles() adds a random circle to the list of circle to be dealt with. 
+
+Assignment 5 Visuals
